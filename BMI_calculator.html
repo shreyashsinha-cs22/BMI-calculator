@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BMI calculator</title>
+</head>
+<style>
+    body{
+        background-color: gray;
+        margin: 10px;
+        /* background-image: url(bmi_images.jpeg); */
+    }
+    .result{
+        font-size: large;
+        font-weight: 900;
+    }
+    .img{
+        width: 100%;
+        height: 100%;
+    }
+</style>
+<body>
+    <div class="container">
+    <h1>BMI CALCULATOR</h1>
+        <form>
+            <p><label>Height in CM: </label> <input type="text" class="height"></p>
+            <p><label >Weight in KG: </label><input type="text" class="weight"></p>
+            <button>Calculate</button>
+            <div class="result"></div>
+            <div class="weight-guide">
+                <h3>BMI Weight Guide</h3>
+                <p>Under Weight = Less than 18.6</p>
+                <p>Normal Range = 18.6 and 24.9</p>
+                <p>Overweight = Greater than 24.9</p>
+            </div>
+        </form>
+    </div>
+</body>
+<script>
+    let form=document.querySelector('form')
+    form.addEventListener('submit', function(e){
+        e.preventDefault()
+        let height=parseInt(document.querySelector('.height').value)
+        let weight=parseInt(document.querySelector('.weight').value)
+        let result=document.querySelector('.result')
+        if(height === '' || height<0 || isNaN(height) || weight==='' || weight<0 || isNaN(weight)){
+            result.innerHTML='please give valid input';
+        }
+        else{
+            let bmi=(weight/ ((height*height)/10000)).toFixed(2)
+            if(bmi<18.6){
+                result.innerHTML=`you are underweight ${bmi}`
+            }
+            if(bmi>=18.6 && bmi<=24.9){
+                result.innerHTML=`you are Normal ${bmi}`
+            }
+            else{
+                result.innerHTML=`you are Overweight ${bmi}`
+            }
+        }
+    })
+
+</script>
+</html>
